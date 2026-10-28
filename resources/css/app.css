@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   OPORTUNIDAD JOVEN - ESTILOS PRINCIPALES
+   ======================================== */
+
+:root {
+    --oj-primary: #10375d;
+    --oj-secondary: #05647a;
+    --oj-accent: #6db8bb;
+    --oj-muted: #869684;
+    --oj-background: #e0e2d5;
+    --oj-white: #ffffff;
+    --oj-text: #1f2937;
+}
+
+/* Configuración general */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--oj-text);
+    background: var(--oj-white);
+}
+
+/* Contenedor principal */
+.oj-container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+/* ========================================
+   HERO
+   ======================================== */
+
+.oj-hero {
+    background: linear-gradient(
+        90deg,
+        var(--oj-primary) 0%,
+        var(--oj-secondary) 100%
+    );
+    color: var(--oj-white);
+}
+
+/* ========================================
+   FONDO DE SECCIONES
+   ======================================== */
+
+.oj-section {
+    background: linear-gradient(
+        180deg,
+        var(--oj-background) 0%,
+        var(--oj-white) 100%
+    );
+}
+
+/* ========================================
+   BOTONES
+   ======================================== */
+
+.oj-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.625rem;
+    background: var(--oj-primary);
+    color: var(--oj-white);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.oj-btn-primary:hover {
+    background: var(--oj-secondary);
+}
+
+.oj-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.625rem;
+    background: var(--oj-accent);
+    color: var(--oj-primary);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.oj-btn-secondary:hover {
+    opacity: 0.9;
+}
+
+/* ========================================
+   TARJETAS
+   ======================================== */
+
+.oj-card {
+    background: var(--oj-white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.625rem;
+    box-shadow: 0 4px 12px rgba(16, 55, 93, 0.08);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .oj-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
