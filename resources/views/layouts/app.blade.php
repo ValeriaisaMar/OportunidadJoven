@@ -17,35 +17,20 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-white text-gray-800">
+<body class="bg-white text-gray-800" x-data="{ open: false }">
 
     <div class="min-h-screen">
 
-        <!-- Header reutilizable -->
-        <header class="border-b border-gray-200 bg-white">
-            <div class="oj-container">
-                <div class="flex h-20 items-center justify-between">
+        @include('layouts.navigation')
 
-                    <!-- Logo -->
-                    <a href="{{ route('home') }}" class="flex items-center">
-                        <img
-                            src="{{ asset('images/logo.png') }}"
-                            alt="Oportunidad Joven"
-                            class="h-12 w-auto"
-                        >
-                    </a>
-
-                    <!-- Volver al inicio -->
-                    <a
-                        href="{{ route('home') }}"
-                        class="font-medium text-[#10375d] hover:text-[#05647a]"
-                    >
-                        ← Volver al inicio
-                    </a>
-
+        <!-- Encabezado propio de cada página (opcional) -->
+        @isset($header)
+            <header class="border-b border-gray-200 bg-white">
+                <div class="oj-container py-6">
+                    {{ $header }}
                 </div>
-            </div>
-        </header>
+            </header>
+        @endisset
 
         <!-- Contenido de cada página -->
         <main>
@@ -57,4 +42,3 @@
 </body>
 
 </html>
-

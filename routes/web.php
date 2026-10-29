@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmpleoController;
+use App\Http\Controllers\Admin\EmpleoController as AdminEmpleoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-
-use App\Http\Controllers\EmpleoController;
 
 Route::get('/empleos', [EmpleoController::class, 'index'])->name('empleos');
 
@@ -29,6 +29,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
 
+Route::patch('/profile/cv', [ProfileController::class, 'updateCv'])->name('profile.cv.update');
     Route::get('/profile', [ProfileController::class, 'edit'])
         ->name('profile.edit');
 
@@ -37,6 +38,10 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/profile', [ProfileController::class, 'destroy'])
         ->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('empleos', AdminEmpleoController::class)->except('show');
 });
 
 require __DIR__.'/auth.php';

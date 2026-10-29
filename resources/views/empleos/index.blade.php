@@ -52,6 +52,7 @@
             <div class="space-y-4">
                 @forelse ($empleos as $empleo)
                     <div class="bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow p-6">
+
                         <div class="flex items-start justify-between mb-2">
                             <div class="flex-1">
                                 <div class="flex items-center gap-2 mb-2">
@@ -69,6 +70,16 @@
                         <div class="grid sm:grid-cols-2 gap-3 mb-4 text-sm text-gray-600">
                             <div>📍 {{ $empleo->ubicacion }} · {{ $empleo->modalidad }}</div>
                             <div>💰 {{ $empleo->salario ?? 'A convenir' }}</div>
+
+                            @auth
+                                @if ($empleo->contacto)
+                                    <div class="sm:col-span-2">✉️ Contacto: {{ $empleo->contacto }}</div>
+                                @endif
+                            @endauth
+
+                            @if ($empleo->fecha_cierre)
+                                <div class="sm:col-span-2">⏳ Cierra el {{ $empleo->fecha_cierre->format('d/m/Y') }}</div>
+                            @endif
                         </div>
 
                         @if ($empleo->requisitos)
@@ -83,9 +94,20 @@
                         @endif
 
                         <div class="flex gap-3">
-                            <button class="flex-1 rounded-md bg-[#10375d] text-white text-sm font-medium py-2 hover:bg-[#10375d]/90">
-                                Aplicar ahora
-                            </button>
+                            @auth
+                                @if ($empleo->url_postulacion)
+                                    <a href="{{ $empleo->url_postulacion }}" target="_blank" rel="noopener noreferrer"
+                                       class="flex-1 rounded-md bg-[#10375d] py-2 text-center text-sm font-medium text-white hover:bg-[#05647a]">
+                                        Ir a la convocatoria
+                                    </a>
+                                @endif
+                            @else
+                                <a href="{{ route('login') }}"
+                                   class="flex-1 rounded-md bg-[#10375d] py-2 text-center text-sm font-medium text-white hover:bg-[#05647a]">
+                                    Ingresa para aplicar
+                                </a>
+                            @endauth
+
                             <button class="rounded-md border border-gray-300 text-sm font-medium px-4 py-2 text-[#10375d] hover:bg-gray-50">
                                 Ver detalles
                             </button>

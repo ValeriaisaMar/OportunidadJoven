@@ -10,6 +10,9 @@ class EmpleoController extends Controller
     public function index(Request $request)
     {
         $empleos = Empleo::query()
+        ->where(function ($query) {
+    $query->whereNull('fecha_cierre')->orWhereDate('fecha_cierre', '>=', today());
+})
             ->when($request->filled('q'), function ($query) use ($request) {
                 $query->where(function ($q) use ($request) {
                     $q->where('titulo', 'like', '%' . $request->q . '%')

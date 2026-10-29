@@ -19,9 +19,16 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+         'name',
+    'email',
+    'password',
+    'telefono',
+    'ubicacion',
+    'fecha_nacimiento',
+    'educacion',
+    'bio',
+    'habilidades',
+    'cv_path',
     ];
 
     /**
@@ -39,11 +46,17 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+   protected function casts(): array
+{
+    return [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'habilidades' => 'array',
+        'fecha_nacimiento' => 'date',
+    ];
+}
+public function esAdmin(): bool
+{
+    return in_array(strtolower($this->email), config('oportunidad.admin_emails', []), true);
+}
 }
