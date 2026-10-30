@@ -36,23 +36,6 @@ class EmpleosRealesSeeder extends Seeder
                 'url_postulacion' => 'https://www.magneto365.com/co/empleos/consultor-comercial-senior-seguros-e-inversiones-medellin-1118435',
             ],
             [
-                'titulo' => 'Aprendiz de Ingeniería de Sistemas (soporte y redes)',
-                'empresa' => 'AEROSAN',
-                'ubicacion' => 'Bogotá',
-                'modalidad' => 'Presencial',
-                'jornada' => 'Tiempo completo',
-                'experiencia' => 'Sin experiencia',
-                'salario' => '$1.750.000',
-                'descripcion' => 'Práctica con contrato de aprendizaje: soporte técnico de primer nivel a usuarios, apoyo en redes, mantenimiento de equipos e infraestructura tecnológica y documentación de procedimientos. Publicada en Magneto365 el 27/10/2026.',
-                'requisitos' => [
-                    'Estudiante activo de pregrado en Ingeniería de Sistemas',
-                    'Aval de la institución educativa para el contrato de aprendizaje',
-                    'Disponibilidad para prácticas presenciales en Bogotá',
-                    'Conocimientos básicos de ofimática, soporte técnico y redes',
-                ],
-                'url_postulacion' => 'https://www.magneto365.com/co/empleos/aprendiz-de-ingenieria-de-sistemas-soporte-y-redes-bogota-1116308',
-            ],
-            [
                 'titulo' => 'Operador/a de sistemas N1 (Control-M)',
                 'empresa' => 'Indra',
                 'ubicacion' => 'Bogotá',

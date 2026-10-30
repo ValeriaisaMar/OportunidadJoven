@@ -1,0 +1,17 @@
+FORO DE OPORTUNIDADJOVEN - como instalarlo
+==========================================
+
+1. Copia las carpetas de este zip sobre tu proyecto (C:\xampp\htdocs\Laravel\OportunidadJoven),
+   aceptando reemplazar:  routes/web.php  y  resources/views/components/icon.blade.php
+
+2. BORRA el archivo viejo:  resources/views/foro.blade.php
+   (el que decia "Aqui aparecera el foro de discusion")
+
+3. En la terminal, dentro del proyecto:
+      php artisan migrate
+      php artisan db:seed --class=ForoSeeder     (opcional: conversaciones de ejemplo)
+      npm run build                              (o deja corriendo npm run dev)
+
+4. Abre http://127.0.0.1:8000/foro
+
+Pruebas automaticas (opcional):  php artisan test --filter=ForoTest
