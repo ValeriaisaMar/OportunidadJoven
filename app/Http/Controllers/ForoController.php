@@ -26,7 +26,7 @@ class ForoController extends Controller
         $orden = $request->input('orden') === 'populares' ? 'populares' : 'recientes';
 
         $posts = ForoPost::query()
-            ->with('autor')
+            ->with(['autor', 'ultimoComentario.autor'])
             ->withCount('comentarios')
             ->conVotos($userId)
             ->when($busqueda !== '', function ($query) use ($busqueda) {

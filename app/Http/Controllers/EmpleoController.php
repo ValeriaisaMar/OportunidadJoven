@@ -25,13 +25,17 @@ class EmpleoController extends Controller
             ->when($request->filled('jornada') && $request->jornada !== 'Todos los tipos', function ($query) use ($request) {
                 $query->where('jornada', $request->jornada);
             })
+            ->when($request->filled('modalidad'), function ($query) use ($request) {
+                $query->whereIn('modalidad', (array) $request->modalidad);
+            })
             ->latest()
-            ->paginate(5)
+            ->paginate(10)
             ->withQueryString();
 
-        $ubicaciones = Empleo::distinct()->pluck('ubicacion');
+        $ubicaciones = Empleo::distinct()->orderBy('ubicacion')->pluck('ubicacion');
         $jornadas = ['Tiempo completo', 'Medio tiempo', 'Por proyecto'];
+        $modalidades = ['Presencial', 'Remoto', 'Híbrido'];
 
-        return view('empleos.index', compact('empleos', 'ubicaciones', 'jornadas'));
+        return view('empleos.index', compact('empleos', 'ubicaciones', 'jornadas', 'modalidades'));
     }
 }

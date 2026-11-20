@@ -1,449 +1,200 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Oportunidad Joven</title>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="bg-white text-gray-800">
-
-    {{-- ================================
-        NAVBAR
-    ================================= --}}
-    <header class="border-b border-gray-200 bg-white">
-        <div class="oj-container">
-
-            <div class="flex h-20 items-center justify-between">
-
-                {{-- Logo --}}
-               <!-- Logo -->
-            <a href="{{ url('/') }}" class="flex items-center">
-                <img
-                    src="{{ asset('images/logo.png') }}"
-                    alt="Oportunidad Joven"
-                    class="h-12 w-auto"
-                >
-            </a>
-
-
-                {{-- Menú --}}
-                <nav class="hidden items-center gap-8 md:flex">
-
-                    <a href="{{ url('/') }}"
-                       class="font-medium text-[#10375d] transition hover:text-[#05647a]">
-                        Inicio
-                    </a>
-
-                    <a href="{{ route('empleos') }}"
-                       class="font-medium text-gray-600 transition hover:text-[#05647a]">
-                        Empleos
-                    </a>
-
-                    <a href="{{ route('pasantias') }}"
-                       class="font-medium text-gray-600 transition hover:text-[#05647a]">
-                        Pasantías
-                    </a>
-
-                    <a href="{{ route('cursos') }}"
-                       class="font-medium text-gray-600 transition hover:text-[#05647a]">
-                        Cursos
-                    </a>
-
-                    <a href="{{ route('foro') }}"
-                       class="font-medium text-gray-600 transition hover:text-[#05647a]">
-                        Foro
-                    </a>
-
-                </nav>
-
-
-                {{-- Acciones --}}
-                <div class="flex items-center gap-3">
-
-                    <a href="{{ route('login') }}"
-                       class="hidden rounded-lg px-4 py-2 font-semibold text-[#10375d] transition hover:bg-gray-100 sm:block">
-                        Ingresar
-                    </a>
-
-                    <a href="{{ route('register') }}"
-                       class="rounded-lg bg-[#10375d] px-5 py-2.5 font-semibold text-white transition hover:bg-[#05647a]">
-                        Registrarse
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-    </header>
-
-
-    {{-- ================================
-        HERO
-    ================================= --}}
-    <section class="oj-hero">
-
-        <div class="oj-container">
-
-            <div class="grid min-h-[560px] items-center gap-12 py-16 lg:grid-cols-2">
-
-                {{-- Texto --}}
-                <div>
-
-
-
-                    <h2 class="max-w-2xl text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-                        Comienza tu carrera
-                        <span class="text-[#6db8bb]">
-                            profesional hoy
-                        </span>
-                    </h2>
-
-                    <p class="mt-6 max-w-xl text-lg leading-8 text-white/85">
-                        Encuentra oportunidades laborales, pasantías,
-                        cursos y recursos diseñados para ayudarte a
-                        desarrollar tu futuro profesional.
-                    </p>
-
-
-                    {{-- Buscador --}}
-                    <form class="mt-8 flex max-w-2xl flex-col gap-3 rounded-xl bg-white p-3 shadow-xl sm:flex-row">
-
-                        <div class="flex flex-1 items-center gap-3 px-3">
-
-                            <svg
-                                class="h-5 w-5 text-gray-400"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24">
-
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" />
-
-                            </svg>
-
-                            <input
-                                type="text"
-                                placeholder="¿Qué estás buscando?"
-                                class="w-full border-0 bg-transparent text-gray-800 outline-none focus:ring-0"
-                            >
-
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="rounded-lg bg-[#10375d] px-7 py-3 font-semibold text-white transition hover:bg-[#05647a]">
-                            Buscar
-                        </button>
-
-                    </form>
-
-
-                    {{-- Estadísticas --}}
-                    <div class="mt-10 grid max-w-xl grid-cols-3 gap-6">
-
-                        <div>
-                            <p class="text-3xl font-bold text-white">
-                                1,247
-                            </p>
-
-                            <p class="mt-1 text-sm text-white/70">
-                                Empleos
-                            </p>
-                        </div>
-
-                        <div>
-                            <p class="text-3xl font-bold text-white">
-                                356
-                            </p>
-
-                            <p class="mt-1 text-sm text-white/70">
-                                Pasantías
-                            </p>
-                        </div>
-
-                        <div>
-                            <p class="text-3xl font-bold text-white">
-                                89
-                            </p>
-
-                            <p class="mt-1 text-sm text-white/70">
-                                Cursos
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                {{-- Imagen / ilustración --}}
-{{-- Imagen / ilustración --}}
-<div class="hidden lg:flex lg:justify-end">
-
-    <div class="relative w-full max-w-lg">
-
-        <div class="absolute -right-5 -top-5 h-24 w-24 rounded-full bg-[#6db8bb]/30 blur-2xl"></div>
-
-        <div class="absolute -bottom-5 -left-5 h-32 w-32 rounded-full bg-white/10 blur-2xl"></div>
-
-        <div class="relative overflow-hidden rounded-3xl shadow-2xl">
-
-            <img
-                src="{{ asset('images/image1.png') }}"
-                alt="Oportunidad Joven"
-                class="h-[450px] w-full object-cover"
-            >
-
-        </div>
-
-    </div>
-
-</div>
-
-  <div class="mt-6 text-center text-white">
-
-            <p class="text-3xl font-bold alin">
-                Tu futuro comienza aquí
-            </p>
-
-            <p class="mt-3 text-lg text-white/80">
-                Encuentra nuevas oportunidades
-            </p>
-
-        </div>
-
+<x-app-layout>
+    @php
+        $accesos = [
+            ['ruta' => 'empleos', 'color' => '#10375d', 'fondo' => 'rgba(16, 55, 93, 0.1)', 'icono' => 'briefcase',
+             'titulo' => 'Empleos sin experiencia', 'texto' => 'Encuentra trabajos ideales para comenzar tu carrera', 'boton' => 'Ver empleos'],
+            ['ruta' => 'pasantias', 'color' => '#05647a', 'fondo' => 'rgba(5, 100, 122, 0.1)', 'icono' => 'graduation-cap',
+             'titulo' => 'Pasantías y Trainee', 'texto' => 'Aprende mientras trabajas con las mejores empresas', 'boton' => 'Ver pasantías'],
+            ['ruta' => 'cursos', 'color' => '#6db8bb', 'fondo' => 'rgba(109, 184, 187, 0.1)', 'icono' => 'book-open',
+             'titulo' => 'Cursos Gratuitos', 'texto' => 'Capacítate con cursos certificados de calidad', 'boton' => 'Ver cursos'],
+            ['ruta' => 'foro', 'color' => '#869684', 'fondo' => 'rgba(134, 150, 132, 0.1)', 'icono' => 'message-square',
+             'titulo' => 'Foro Comunidad', 'texto' => 'Comparte experiencias y consejos con otros jóvenes', 'boton' => 'Ver foro'],
+        ];
+    @endphp
+
+    <div class="min-h-screen" style="background: linear-gradient(180deg, #e0e2d5 0%, #ffffff 100%);">
+
+        {{-- Hero --}}
+        <section class="text-white" style="background: linear-gradient(90deg, #10375d 0%, #05647a 100%);">
+            <div class="oj-container py-16 sm:py-20">
+                <div class="grid items-center gap-12 md:grid-cols-2">
+                    <div>
+                        <h1 class="mb-6 text-4xl sm:text-5xl">Comienza tu carrera profesional hoy</h1>
+                        <p class="mb-8 text-xl text-oj-secondary">
+                            Encuentra empleos, pasantías y cursos diseñados para jóvenes sin experiencia.
+                            Tu oportunidad está aquí.
+                        </p>
+
+                        {{-- Buscador: busca en los empleos --}}
+                        <form method="GET" action="{{ route('empleos') }}" class="flex gap-2 rounded-lg bg-white p-2 shadow-lg">
+                            <input type="text" name="q" placeholder="¿Qué estás buscando?"
+                                   class="h-9 w-full rounded-md border-0 bg-transparent px-3 text-sm text-gray-900 placeholder:text-gray-500 focus:ring-0">
+                            <button type="submit" class="oj-btn bg-oj-accent text-white hover:opacity-90">
+                                <x-icon name="search" class="h-4 w-4" />
+                                Buscar
+                            </button>
+                        </form>
+
+                        {{-- Cifras reales --}}
+                        <div class="mt-8 grid grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <div class="mb-1 text-3xl">{{ $stats['empleos'] }}</div>
+                                <div class="text-sm text-oj-secondary">Empleos</div>
                             </div>
-
+                            <div class="text-center">
+                                <div class="mb-1 text-3xl">{{ $stats['pasantias'] }}</div>
+                                <div class="text-sm text-oj-secondary">Pasantías</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="mb-1 text-3xl">{{ $stats['cursos'] }}</div>
+                                <div class="text-sm text-oj-secondary">Cursos</div>
+                            </div>
                         </div>
-
                     </div>
 
+                    <div class="hidden md:block">
+                        <img src="{{ asset('images/ofertas/oferta-1.jpg') }}" alt="Jóvenes profesionales"
+                             class="h-96 w-full rounded-lg object-cover shadow-2xl">
+                    </div>
                 </div>
-
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-
-{{-- ================================
-    ACCESOS RÁPIDOS
-================================= --}}
-<section class="oj-section py-20">
-
-    <div class="oj-container">
-
-        <div class="mx-auto max-w-2xl text-center">
-
-            <p class="font-semibold text-[#05647a]">
-                TODO EN UN SOLO LUGAR
-            </p>
-
-            <h2 class="mt-2 text-3xl font-bold text-[#10375d] sm:text-4xl">
-                Construye tu futuro
-            </h2>
-
-            <p class="mt-4 text-gray-600">
-                Explora las herramientas y oportunidades que tenemos
-                para ayudarte a crecer profesionalmente.
-            </p>
-
-        </div>
-
-
-        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-
-            {{-- Empleos --}}
-            <a
-                href="{{ route('empleos') }}"
-                class="oj-card group p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-[#10375d]/10 text-2xl">
-                    💼
-                </div>
-
-                <h3 class="mt-5 text-xl font-bold text-[#10375d]">
-                    Empleos
-                </h3>
-
-                <p class="mt-2 text-sm leading-6 text-gray-600">
-                    Encuentra ofertas laborales que se adapten
-                    a tu perfil profesional.
-                </p>
-
-                <span class="mt-5 inline-block font-semibold text-[#05647a]">
-                    Explorar →
-                </span>
-
-            </a>
-
-
-            {{-- Pasantías --}}
-            <a
-                href="{{ route('pasantias') }}"
-                class="oj-card group p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-[#6db8bb]/20 text-2xl">
-                    🎯
-                </div>
-
-                <h3 class="mt-5 text-xl font-bold text-[#10375d]">
-                    Pasantías
-                </h3>
-
-                <p class="mt-2 text-sm leading-6 text-gray-600">
-                    Obtén experiencia y desarrolla tus habilidades
-                    en organizaciones.
-                </p>
-
-                <span class="mt-5 inline-block font-semibold text-[#05647a]">
-                    Ver pasantías →
-                </span>
-
-            </a>
-
-
-            {{-- Cursos --}}
-            <a
-                href="{{ route('cursos') }}"
-                class="oj-card group p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-[#869684]/15 text-2xl">
-                    📚
-                </div>
-
-                <h3 class="mt-5 text-xl font-bold text-[#10375d]">
-                    Cursos
-                </h3>
-
-                <p class="mt-2 text-sm leading-6 text-gray-600">
-                    Aprende nuevas habilidades con cursos
-                    pensados para jóvenes.
-                </p>
-
-                <span class="mt-5 inline-block font-semibold text-[#05647a]">
-                    Ver cursos →
-                </span>
-
-            </a>
-
-
-            {{-- Foro --}}
-            <a
-                href="{{ route('foro') }}"
-                class="oj-card group p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-
-                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-[#05647a]/10 text-2xl">
-                    💬
-                </div>
-
-                <h3 class="mt-5 text-xl font-bold text-[#10375d]">
-                    Comunidad
-                </h3>
-
-                <p class="mt-2 text-sm leading-6 text-gray-600">
-                    Comparte experiencias, preguntas y consejos
-                    con otros jóvenes.
-                </p>
-
-                <span class="mt-5 inline-block font-semibold text-[#05647a]">
-                    Ir al foro →
-                </span>
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-
-    {{-- ================================
-        CTA
-    ================================= --}}
-    <section class="bg-[#10375d] py-20">
-
-        <div class="oj-container">
-
-            <div class="rounded-3xl bg-gradient-to-r from-[#05647a] to-[#10375d] px-8 py-14 text-center shadow-xl sm:px-14">
-
-                <h2 class="text-3xl font-bold text-white sm:text-4xl">
-                    ¿Listo para comenzar?
-                </h2>
-
-                <p class="mx-auto mt-4 max-w-2xl text-white/80">
-                    Crea tu cuenta y comienza a explorar oportunidades
-                    para construir tu futuro profesional.
-                </p>
-
-                <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-
-                    <a
-                        href="{{ route('register') }}"
-                        class="rounded-lg bg-white px-7 py-3 font-semibold text-[#10375d] transition hover:bg-gray-100">
-                        Crear mi cuenta
+        {{-- Accesos rápidos --}}
+        <section class="oj-container -mt-12">
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                @foreach ($accesos as $acceso)
+                    <a href="{{ route($acceso['ruta']) }}"
+                       class="oj-card group flex flex-col gap-6 border-t-4 transition-shadow hover:shadow-lg"
+                       style="border-top-color: {{ $acceso['color'] }};">
+                        <div class="px-6 pt-6">
+                            <div class="mb-3 flex h-12 w-12 items-center justify-center rounded-lg" style="background-color: {{ $acceso['fondo'] }};">
+                                <x-icon :name="$acceso['icono']" class="h-6 w-6" style="color: {{ $acceso['color'] }};" />
+                            </div>
+                            <h4 class="leading-none">{{ $acceso['titulo'] }}</h4>
+                            <p class="mt-1.5 text-oj-muted">{{ $acceso['texto'] }}</p>
+                        </div>
+                        <div class="mt-auto px-6 pb-6">
+                            <span class="oj-btn-ghost w-full justify-between">
+                                {{ $acceso['boton'] }}
+                                <x-icon name="arrow-right" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </span>
+                        </div>
                     </a>
-
-                    <a
-                        href="{{ route('login') }}"
-                        class="rounded-lg border border-white/30 px-7 py-3 font-semibold text-white transition hover:bg-white/10">
-                        Ya tengo una cuenta
-                    </a>
-
-                </div>
-
+                @endforeach
             </div>
+        </section>
 
-        </div>
-
-    </section>
-
-
-    {{-- ================================
-        FOOTER
-    ================================= --}}
-    <footer class="bg-[#0b2945] py-10 text-white">
-
-        <div class="oj-container">
-
-            <div class="flex flex-col justify-between gap-6 md:flex-row md:items-center">
-
+        {{-- Empleos destacados --}}
+        <section class="oj-container py-16">
+            <div class="mb-8 flex items-center justify-between gap-4">
                 <div>
-
-                    <h3 class="text-xl font-bold">
-                        Oportunidad Joven
-                    </h3>
-
-                    <p class="mt-2 text-sm text-white/60">
-                        Conectando jóvenes con oportunidades.
-                    </p>
-
+                    <h2 class="mb-2 text-3xl text-gray-900">Empleos destacados</h2>
+                    <p class="text-gray-600">Oportunidades recientes para ti</p>
                 </div>
-
-                <p class="text-sm text-white/50">
-                    © {{ date('Y') }} Oportunidad Joven. Todos los derechos reservados.
-                </p>
-
+                <a href="{{ route('empleos') }}" class="oj-btn-outline">Ver todos</a>
             </div>
 
-        </div>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                @forelse ($empleosDestacados as $empleo)
+                    <div class="oj-card flex flex-col transition-shadow hover:shadow-lg">
+                        <img src="{{ $empleo->foto_url }}" alt="{{ $empleo->titulo }}" class="h-40 w-full rounded-t-xl object-cover">
+                        <div class="px-6 pt-6">
+                            <div class="mb-2 flex items-start justify-between gap-2">
+                                <span class="oj-badge bg-blue-100 text-blue-700">{{ $empleo->experiencia }}</span>
+                                <span class="text-xs text-gray-500">{{ $empleo->created_at->diffForHumans() }}</span>
+                            </div>
+                            <h4 class="text-lg leading-tight">{{ $empleo->titulo }}</h4>
+                            <p class="mt-1.5 text-oj-muted">{{ $empleo->empresa }}</p>
+                        </div>
+                        <div class="mt-auto px-6 pb-6 pt-6">
+                            <div class="space-y-2 text-sm text-gray-600">
+                                <div class="flex items-center gap-2">
+                                    <x-icon name="map-pin" class="h-4 w-4" />
+                                    {{ $empleo->ubicacion }}
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <x-icon name="trending-up" class="h-4 w-4" />
+                                    {{ $empleo->salario ?? 'A convenir' }}
+                                </div>
+                            </div>
+                            <a href="{{ route('empleos', ['q' => $empleo->titulo]) }}" class="oj-btn-primary mt-4 w-full">Aplicar ahora</a>
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-gray-500">Pronto publicaremos nuevas vacantes.</p>
+                @endforelse
+            </div>
+        </section>
 
-    </footer>
+        {{-- Cursos disponibles --}}
+        <section class="bg-gray-50 py-16">
+            <div class="oj-container">
+                <div class="mb-8 flex items-center justify-between gap-4">
+                    <div>
+                        <h2 class="mb-2 text-3xl text-gray-900">Cursos disponibles</h2>
+                        <p class="text-gray-600">Capacítate y mejora tu perfil profesional</p>
+                    </div>
+                    <a href="{{ route('cursos') }}" class="oj-btn-outline">Ver todos</a>
+                </div>
 
-</body>
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    @forelse ($cursosDestacados as $curso)
+                        <div class="oj-card flex flex-col transition-shadow hover:shadow-lg">
+                            <div class="px-6 pt-6">
+                                <div class="mb-3 flex items-center justify-between gap-2">
+                                    <span class="oj-badge bg-green-100 text-green-700">Gratuito</span>
+                                    <span class="oj-badge-outline">
+                                        {{ $curso->cupos !== null ? $curso->cupos . ' cupos' : ($curso->certificado ? 'Con certificado' : $curso->modalidad) }}
+                                    </span>
+                                </div>
+                                <h4 class="text-lg leading-tight">{{ $curso->titulo }}</h4>
+                                <p class="mt-1.5 text-oj-muted">{{ $curso->institucion }}</p>
+                            </div>
+                            <div class="mt-auto px-6 pb-6 pt-6">
+                                <div class="mb-4 space-y-2 text-sm text-gray-600">
+                                    <div class="flex items-center gap-2">
+                                        <x-icon name="clock" class="h-4 w-4" />
+                                        {{ $curso->duracion ?? 'Duración a consultar' }} • {{ $curso->modalidad }}
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <x-icon name="graduation-cap" class="h-4 w-4" />
+                                        {{ $curso->fecha_inicio ? 'Inicia: ' . $curso->fecha_inicio->format('d/m/Y') : 'Inscripción abierta' }}
+                                    </div>
+                                </div>
+                                <a href="{{ route('cursos', ['q' => $curso->titulo]) }}" class="oj-btn-outline w-full">Inscribirse</a>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="text-gray-500">Pronto publicaremos nuevos cursos.</p>
+                    @endforelse
+                </div>
+            </div>
+        </section>
 
-</html>
-
+        {{-- Llamado a la acción --}}
+        <section class="py-16 text-white" style="background: linear-gradient(90deg, #10375d 0%, #05647a 100%);">
+            <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+                @guest
+                    <h2 class="mb-4 text-3xl">¿Listo para comenzar?</h2>
+                    <p class="mb-8 text-xl text-oj-secondary">
+                        Crea tu perfil gratis y accede a oportunidades diseñadas para ti
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="{{ route('register') }}" class="oj-btn oj-btn-lg bg-white text-oj-primary hover:opacity-90">Crear cuenta gratis</a>
+                        <a href="{{ route('cursos') }}" class="oj-btn oj-btn-lg border border-white text-white hover:bg-white/10">Más información</a>
+                    </div>
+                @else
+                    <h2 class="mb-4 text-3xl">¡Hola, {{ Str::before(Auth::user()->name, ' ') }}!</h2>
+                    <p class="mb-8 text-xl text-oj-secondary">
+                        Completa tu perfil para que las empresas conozcan lo que sabes hacer
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="{{ route('dashboard') }}" class="oj-btn oj-btn-lg bg-white text-oj-primary hover:opacity-90">Ir a mi panel</a>
+                        <a href="{{ route('profile.edit') }}" class="oj-btn oj-btn-lg border border-white text-white hover:bg-white/10">Completar mi perfil</a>
+                    </div>
+                @endguest
+            </div>
+        </section>
+    </div>
+</x-app-layout>

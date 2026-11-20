@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Empleo;
+use App\Models\ForoPost;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,9 +21,21 @@ class ProfileController extends Controller
         $completados = collect($camposParaCompletar)->filter(fn ($campo) => !empty($user->{$campo}))->count();
         $porcentajePerfil = (int) round((($completados + 1) / (count($camposParaCompletar) + 1)) * 100); // +1 por el nombre, que siempre está
 
+        $cursosGuardados = $user->cursosGuardados()->latest('curso_user.created_at')->get();
+
+        // Logros calculados con datos reales de la cuenta
+        $logros = [
+            ['icono' => '🎯', 'titulo' => 'Primera publicación', 'detalle' => 'Publicaste en el foro', 'logrado' => ForoPost::where('user_id', $user->id)->exists()],
+            ['icono' => '📚', 'titulo' => 'Estudiante dedicado', 'detalle' => 'Guardaste al menos un curso', 'logrado' => $cursosGuardados->isNotEmpty()],
+            ['icono' => '⭐', 'titulo' => 'Perfil completo', 'detalle' => 'Completaste el 100% de tu perfil', 'logrado' => $porcentajePerfil === 100],
+            ['icono' => '💪', 'titulo' => 'Persistente', 'detalle' => 'Llevas 30 días o más en OportunidadJoven', 'logrado' => $user->created_at?->lte(now()->subDays(30)) ?? false],
+        ];
+
         return view('profile.edit', [
             'user' => $user,
             'porcentajePerfil' => $porcentajePerfil,
+            'cursosGuardados' => $cursosGuardados,
+            'logros' => $logros,
         ]);
     }
 

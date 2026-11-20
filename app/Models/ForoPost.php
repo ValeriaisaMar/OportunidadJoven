@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class ForoPost extends Model
@@ -41,6 +42,12 @@ class ForoPost extends Model
     public function comentarios(): HasMany
     {
         return $this->hasMany(ForoComentario::class, 'foro_post_id');
+    }
+
+    /** La respuesta más reciente (para mostrarla de vista previa en el listado). */
+    public function ultimoComentario(): HasOne
+    {
+        return $this->hasOne(ForoComentario::class, 'foro_post_id')->latestOfMany();
     }
 
     public function votos(): MorphMany

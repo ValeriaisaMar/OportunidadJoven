@@ -25,6 +25,12 @@ class Pasantia extends Model
         'fecha_cierre' => 'date',
     ];
 
+    /** Foto de la tarjeta (una de las fotos del diseño). */
+    public function getFotoUrlAttribute(): string
+    {
+        return asset('images/ofertas/oferta-' . (($this->id % 3) + 1) . '.jpg');
+    }
+
     /** Solo las que no han vencido (o no tienen fecha de cierre). */
     public function scopeVigentes(Builder $query): Builder
     {

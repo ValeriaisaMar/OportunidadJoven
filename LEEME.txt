@@ -15,3 +15,25 @@ FORO DE OPORTUNIDADJOVEN - como instalarlo
 4. Abre http://127.0.0.1:8000/foro
 
 Pruebas automaticas (opcional):  php artisan test --filter=ForoTest
+
+
+OFERTAS REALES + DISEÑO DE FIGMA (30/10/2026)
+=============================================
+Las ofertas de "ejemplo" se borran y quedan solo ofertas reales (Magneto365, Computrabajo, elempleo, SENA, Cisco,
+Fundación Carlos Slim, freeCodeCamp), cada una con el enlace a su publicación original.
+Las páginas ahora se ven como la plantilla de Figma.
+
+Para aplicarlo en tu proyecto:
+  1. Enciende Apache y MySQL en el panel de XAMPP.
+  2. Doble clic en ACTUALIZAR.bat (está en la carpeta del proyecto).
+     Borra las ofertas de ejemplo, carga 38 empleos, 13 pasantías y 6 cursos reales,
+     y al final muestra una tabla con cuántas ofertas quedaron ("De ejemplo" debe ser 0).
+
+  Lo mismo a mano, en la terminal dentro del proyecto:
+      php artisan migrate
+      php artisan ofertas:cargar
+      php artisan optimize:clear
+
+Las vacantes tienen fecha de cierre (la que muestra Magneto). Cuando vence, la vacante deja de
+aparecer sola. Conviene buscar ofertas nuevas cada 2 o 3 semanas y agregarlas en el seeder
+o desde el panel de administración.

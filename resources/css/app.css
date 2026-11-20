@@ -4,6 +4,7 @@
 
 /* ========================================
    OPORTUNIDAD JOVEN - ESTILOS PRINCIPALES
+   Basados en el diseño de Figma (src/styles/globals.css)
    ======================================== */
 
 :root {
@@ -13,105 +14,128 @@
     --oj-muted: #869684;
     --oj-background: #e0e2d5;
     --oj-white: #ffffff;
-    --oj-text: #1f2937;
-}
-
-/* Configuración general */
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--oj-text);
-    background: var(--oj-white);
-}
-
-/* Contenedor principal */
-.oj-container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    --oj-text: #10375d;
 }
 
 /* ========================================
-   HERO
+   BASE (igual que Figma)
+   ======================================== */
+
+@layer base {
+    html {
+        font-size: 15px;
+    }
+
+    body {
+        margin: 0;
+        color: var(--oj-text);
+        background: var(--oj-white);
+    }
+
+    h1, h2, h3, h4 {
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    label, button {
+        font-weight: 500;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   COMPONENTES (equivalentes a los de shadcn en Figma)
+   ======================================== */
+
+@layer components {
+    /* Contenedor principal (max-w-7xl) */
+    .oj-container {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Página interna: fondo gris como en Figma */
+    .oj-page {
+        @apply min-h-screen bg-gray-50;
+    }
+
+    .oj-title {
+        @apply mb-2 text-3xl text-gray-900;
+    }
+
+    /* Tarjeta */
+    .oj-card {
+        @apply rounded-xl border border-oj-muted bg-white text-oj-primary;
+    }
+
+    /* Botones */
+    .oj-btn {
+        @apply inline-flex h-9 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50;
+    }
+
+    .oj-btn-primary {
+        @apply oj-btn bg-oj-primary text-white hover:bg-oj-primary/90;
+    }
+
+    .oj-btn-outline {
+        @apply oj-btn border border-oj-muted bg-white text-oj-primary hover:bg-oj-accent hover:text-white;
+    }
+
+    .oj-btn-ghost {
+        @apply oj-btn text-oj-primary hover:bg-oj-accent hover:text-white;
+    }
+
+    .oj-btn-gradient {
+        @apply oj-btn text-white hover:opacity-90;
+        background: linear-gradient(90deg, #10375d 0%, #05647a 100%);
+    }
+
+    .oj-btn-sm {
+        @apply h-8 gap-1.5 px-3;
+    }
+
+    .oj-btn-lg {
+        @apply h-10 px-6;
+    }
+
+    /* Insignias */
+    .oj-badge {
+        @apply inline-flex w-fit shrink-0 items-center justify-center gap-1 whitespace-nowrap rounded-md border border-transparent px-2 py-0.5 text-xs font-medium;
+    }
+
+    .oj-badge-secondary {
+        @apply oj-badge bg-oj-secondary text-oj-primary;
+    }
+
+    .oj-badge-outline {
+        @apply oj-badge border-oj-muted text-oj-primary;
+    }
+
+    /* Campos de formulario */
+    .oj-input {
+        @apply h-9 w-full rounded-md border-transparent bg-oj-bg px-3 py-1 text-sm text-oj-primary placeholder:text-oj-muted focus:border-transparent focus:ring-2 focus:ring-oj-secondary;
+    }
+
+    select.oj-input {
+        @apply pr-10;
+    }
+
+    textarea.oj-input {
+        @apply h-auto py-2;
+    }
+}
+
+/* ========================================
+   HERO Y SECCIONES
    ======================================== */
 
 .oj-hero {
-    background: linear-gradient(
-        90deg,
-        var(--oj-primary) 0%,
-        var(--oj-secondary) 100%
-    );
+    background: linear-gradient(90deg, var(--oj-primary) 0%, var(--oj-secondary) 100%);
     color: var(--oj-white);
 }
-
-/* ========================================
-   FONDO DE SECCIONES
-   ======================================== */
 
 .oj-section {
-    background: linear-gradient(
-        180deg,
-        var(--oj-background) 0%,
-        var(--oj-white) 100%
-    );
-}
-
-/* ========================================
-   BOTONES
-   ======================================== */
-
-.oj-btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.625rem;
-    background: var(--oj-primary);
-    color: var(--oj-white);
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.oj-btn-primary:hover {
-    background: var(--oj-secondary);
-}
-
-.oj-btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.625rem;
-    background: var(--oj-accent);
-    color: var(--oj-primary);
-    font-weight: 600;
-    transition: all 0.2s ease;
-}
-
-.oj-btn-secondary:hover {
-    opacity: 0.9;
-}
-
-/* ========================================
-   TARJETAS
-   ======================================== */
-
-.oj-card {
-    background: var(--oj-white);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 0.625rem;
-    box-shadow: 0 4px 12px rgba(16, 55, 93, 0.08);
-}
-
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-
-@media (max-width: 768px) {
-    .oj-container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
+    background: linear-gradient(180deg, var(--oj-background) 0%, var(--oj-white) 100%);
 }

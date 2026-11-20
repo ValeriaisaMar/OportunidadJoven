@@ -6,7 +6,7 @@
     );
 @endphp
 
-<div {{ $attributes->merge(['class' => 'flex shrink-0 items-center justify-center rounded-full font-semibold text-white ' . $size]) }}
-     style="background: linear-gradient(135deg, #10375d 0%, #05647a 100%)">
+{{-- Avatar con iniciales, con el degradado azul-morado del diseño de Figma --}}
+<div {{ $attributes->merge(['class' => 'flex shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-600 font-medium text-white ' . $size]) }}>
     {{ $iniciales }}
 </div>

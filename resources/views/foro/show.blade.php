@@ -5,7 +5,7 @@
         $puedeBorrarPost = $usuario && ($usuario->id === $post->user_id || $usuario->esAdmin());
     @endphp
 
-    <section class="oj-section py-10">
+    <section class="oj-page py-8">
         <div class="oj-container">
             <div class="mx-auto max-w-4xl">
 
@@ -19,10 +19,10 @@
                 @endif
 
                 {{-- ============ La publicación ============ --}}
-                <article id="post-{{ $post->id }}" class="rounded-xl border border-[#869684]/50 bg-white p-6 sm:p-8">
+                <article id="post-{{ $post->id }}" class="rounded-xl border border-oj-muted bg-white p-6 sm:p-8">
                     <div class="mb-3"><x-foro.categoria :categoria="$post->categoria" /></div>
 
-                    <h1 class="mb-4 break-words text-2xl font-bold text-[#10375d]">{{ $post->titulo }}</h1>
+                    <h1 class="mb-4 break-words text-2xl text-oj-primary">{{ $post->titulo }}</h1>
 
                     <div class="mb-6 flex items-center gap-3">
                         <x-foro.avatar :usuario="$post->autor" size="h-10 w-10 text-sm" />
@@ -64,16 +64,16 @@
 
                 {{-- ============ Comentarios ============ --}}
                 <div id="comentarios" class="mt-8">
-                    <h2 class="mb-4 text-lg font-semibold text-[#10375d]">
+                    <h2 class="mb-4 text-lg text-oj-primary">
                         {{ $post->comentarios_count }} {{ $post->comentarios_count === 1 ? 'comentario' : 'comentarios' }}
                     </h2>
 
                     @auth
-                        <form method="POST" action="{{ route('foro.comentar', $post) }}" class="mb-6 rounded-xl border border-[#869684]/50 bg-white p-4">
+                        <form method="POST" action="{{ route('foro.comentar', $post) }}" class="mb-6 rounded-xl border border-oj-muted bg-white p-4">
                             @csrf
                             <label for="contenido" class="sr-only">Escribe un comentario</label>
                             <textarea id="contenido" name="contenido" rows="3" maxlength="2000" placeholder="Escribe un comentario..."
-                                      class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm">{{ old('contenido') }}</textarea>
+                                      class="oj-input">{{ old('contenido') }}</textarea>
                             @error('contenido') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
 
                             <div class="mt-3 flex justify-end">
@@ -99,7 +99,7 @@
                                 $puedeBorrar = $usuario && ($usuario->id === $comentario->user_id || $usuario->esAdmin());
                             @endphp
 
-                            <div id="comentario-{{ $comentario->id }}" class="flex gap-3 rounded-xl border border-[#869684]/50 bg-white p-4">
+                            <div id="comentario-{{ $comentario->id }}" class="flex gap-3 rounded-xl border border-oj-muted bg-white p-4">
                                 <x-foro.avatar :usuario="$comentario->autor" size="h-9 w-9 text-xs" />
 
                                 <div class="min-w-0 flex-1">

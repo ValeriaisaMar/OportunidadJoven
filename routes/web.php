@@ -8,10 +8,23 @@ use App\Http\Controllers\EmpleoController;
 use App\Http\Controllers\ForoController;
 use App\Http\Controllers\PasantiaController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Curso;
+use App\Models\Empleo;
+use App\Models\Pasantia;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $vigente = fn ($q) => $q->whereNull('fecha_cierre')->orWhereDate('fecha_cierre', '>=', today());
+
+    return view('welcome', [
+        'empleosDestacados' => Empleo::where($vigente)->latest()->take(3)->get(),
+        'cursosDestacados' => Curso::where($vigente)->latest()->take(3)->get(),
+        'stats' => [
+            'empleos' => Empleo::where($vigente)->count(),
+            'pasantias' => Pasantia::where($vigente)->count(),
+            'cursos' => Curso::where($vigente)->count(),
+        ],
+    ]);
 })->name('home');
 
 Route::get('/empleos', [EmpleoController::class, 'index'])->name('empleos');

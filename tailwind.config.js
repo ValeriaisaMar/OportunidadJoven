@@ -14,6 +14,23 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            // Colores del diseño de Figma
+            colors: {
+                oj: {
+                    primary: '#10375d',
+                    accent: '#05647a',
+                    secondary: '#6db8bb',
+                    muted: '#869684',
+                    bg: '#e0e2d5',
+                },
+            },
+            // Escala de bordes del diseño de Figma (--radius: 0.625rem)
+            borderRadius: {
+                sm: '6px',
+                md: '8px',
+                lg: '10px',
+                xl: '14px',
+            },
         },
     },
 
